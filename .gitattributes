@@ -1,0 +1,25 @@
+* text=auto
+
+*.java linguist-detectable=true
+*.md linguist-detectable=true
+*.properties linguist-detectable=true
+*.json linguist-detectable=true
+*.yaml linguist-detectable=true
+*.yml linguist-detectable=true
+
+# Configurações padrão
+*.tf text diff=diff
+*.tfvars text diff=diff
+
+# Crônicas de commits
+CHANGELOG.md linguist-vendored
+
+# Recursos estáticos (como PNGs, SVGs)
+*.png textrgb
+*.svg textrgb
+*.jpg textrgb
+*.jpeg textrgb
+
+# Certificados e chaves privadas (protegidos)
+*.pem linguist-detectable=false
+*.key linguist-detectable=false

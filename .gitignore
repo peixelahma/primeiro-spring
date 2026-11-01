@@ -1,0 +1,22 @@
+# Arquivos de compilação e IDE
+*.class
+*.jar
+*.war
+
+# Arquivos de configuração IDE
+.idea/
+/.idea/
+
+# Arquivos de projeto Eclipse
+.classpath
+.project
+
+# Pastas de build do Maven/Gradle
+target/
+/build/
+
+# Arquivos de banco de dados embutido (H2)
+*.h2.db
+
+# Segredos e chaves (se houver)
+*.env
