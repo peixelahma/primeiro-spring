@@ -20,3 +20,6 @@ target/
 
 # Segredos e chaves (se houver)
 *.env
+
+# Arquivo .claude do código para evitar que dados confidenciais sejam enviados para o github
+/.claude
