@@ -1,21 +1,42 @@
 package com.juliodias.primeiro_spring.service;
 
 import com.juliodias.primeiro_spring.dto.ProdutoResponse;
+import com.juliodias.primeiro_spring.entity.Produto;
+import com.juliodias.primeiro_spring.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutoService {
+
+    private final ProdutoRepository produtoRepository;
+
+    public ProdutoService(ProdutoRepository produtoRepository) {
+        this.produtoRepository = produtoRepository;
+    }
+
     public ProdutoResponse findById(Long id){
-        return new ProdutoResponse(id, "Notebook Lenovo", 4500.00);
+
+        Optional<Produto> optional = produtoRepository.findById(id);
+
+        Produto produto = optional.orElseThrow();
+
+        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getPreco());
+
     }
 
     public List<ProdutoResponse>  list() {
-        return List.of(
-                new ProdutoResponse(1L, "Notebook Lenovo", 4500.00),
-                new ProdutoResponse(2L, "Monitor Dell", 1200.00),
-                new ProdutoResponse(3L, "Teclado Logitech", 350.00)
-        );
+
+        List<Produto> produtos = produtoRepository.findAll();
+
+        List<ProdutoResponse> produtosResponse = new ArrayList<>();
+        for (Produto produto : produtos) {
+            produtosResponse.add(new ProdutoResponse(produto.getId(), produto.getNome(), produto.getPreco()));
+        }
+
+        return produtosResponse;
     }
 }
