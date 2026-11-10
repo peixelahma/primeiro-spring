@@ -1,10 +1,10 @@
 package com.juliodias.primeiro_spring.controller;
 
+import com.juliodias.primeiro_spring.dto.ProdutoRequest;
 import com.juliodias.primeiro_spring.dto.ProdutoResponse;
 import com.juliodias.primeiro_spring.service.ProdutoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +25,11 @@ public class ProdutoController {
     @GetMapping("/produtos")
     public List<ProdutoResponse> listaProdutos() {
         return produtoService.list();
+    }
+
+    @PostMapping("/produtos")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProdutoResponse cadastraProdutos(@RequestBody ProdutoRequest requestBody) {
+        return produtoService.cadastro(requestBody);
     }
 }

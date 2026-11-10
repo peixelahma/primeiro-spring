@@ -1,5 +1,6 @@
 package com.juliodias.primeiro_spring.service;
 
+import com.juliodias.primeiro_spring.dto.ProdutoRequest;
 import com.juliodias.primeiro_spring.dto.ProdutoResponse;
 import com.juliodias.primeiro_spring.entity.Produto;
 import com.juliodias.primeiro_spring.repository.ProdutoRepository;
@@ -38,5 +39,16 @@ public class ProdutoService {
         }
 
         return produtosResponse;
+    }
+
+    public ProdutoResponse cadastro (ProdutoRequest request) {
+
+        Produto produto = new Produto (request.nome(), request.preco());
+
+        Produto produtoSalvo = produtoRepository.save(produto);
+
+        return new ProdutoResponse(produtoSalvo.getId(),
+                produtoSalvo.getNome(),
+                produtoSalvo.getPreco());
     }
 }
