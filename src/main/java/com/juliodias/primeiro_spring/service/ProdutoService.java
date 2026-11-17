@@ -51,4 +51,20 @@ public class ProdutoService {
                 produtoSalvo.getNome(),
                 produtoSalvo.getPreco());
     }
+
+    public ProdutoResponse atualizar(Long id, ProdutoRequest request) {
+
+        Optional<Produto> optional  = produtoRepository.findById(id);
+
+        Produto produto = optional.orElseThrow();
+
+        produto.atualizarDados(request.nome(), request.preco());
+
+        Produto produtoSalvo = produtoRepository.save(produto);
+
+
+        return new ProdutoResponse(produtoSalvo.getId(),
+                produtoSalvo.getNome(),
+                produtoSalvo.getPreco());
+    }
 }

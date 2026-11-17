@@ -32,4 +32,10 @@ public class ProdutoController {
     public ProdutoResponse cadastraProdutos(@RequestBody ProdutoRequest requestBody) {
         return produtoService.cadastro(requestBody);
     }
+
+    @PutMapping("/produtos/{id}")
+    public ProdutoResponse atualizarProduto(@PathVariable Long id,
+                                            @RequestBody ProdutoRequest requestBody ) {
+        return produtoService.atualizar(id,requestBody);
+    }
 }
