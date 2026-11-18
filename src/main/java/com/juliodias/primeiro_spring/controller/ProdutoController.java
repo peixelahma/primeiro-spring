@@ -38,4 +38,10 @@ public class ProdutoController {
                                             @RequestBody ProdutoRequest requestBody ) {
         return produtoService.atualizar(id,requestBody);
     }
+
+    @DeleteMapping("/produtos/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarProduto (@PathVariable Long id) {
+        produtoService.excluir(id);
+    }
 }
