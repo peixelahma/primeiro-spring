@@ -67,4 +67,14 @@ public class ProdutoService {
                 produtoSalvo.getNome(),
                 produtoSalvo.getPreco());
     }
+
+
+    public void excluir(Long id) {
+
+        Optional<Produto> optional = produtoRepository.findById(id);
+
+        Produto produto = optional.orElseThrow();
+
+        produtoRepository.delete(produto);
+    }
 }
